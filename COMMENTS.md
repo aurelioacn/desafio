@@ -1,7 +1,25 @@
+# Documentaçao: Como fazer deploy 
+* TODO
+
+# Requisitos/Consideracoes
+* Ansible version 2.9.7 ou superior.
+* Ansible esta propriamente configurado e com o inventorio e suas credenciais criados.
+* O host do Ansible tem acesso a este repositorio git.
+
+A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria de mais informacoes.
+
+* Nao existe nenhum bloqueio de FW entre o host do ansible e seu inventorio.
+* Todo o inventario tem acesso as bibliotecas/frameworks requisitados pela app. (repositorio interno da empresa ou ate mesmo o publico).
+* A porta default do gunicorn 8000 esta aprovada pela equipe de segurança e aberta no iptables do servidor(es) que recebera a app.
+* Se essa API for consumida por uma outra app em outro servidor ou ate mesmo um reverse-proxy, nao tem nenhum tipo de bloqueio de FW ate a porta 8000 no(s) servidore(s) que sera feito o deploy.
+
 # Ideias que gostaria de implementar
 * A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
-  Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
+  Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS seria com docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
   seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml.
+* Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
+   - Criar api /status/ pra servir como liveness probe para uma app de monitoramento? A response seria por exemplo o total de comentarios feitos etc.
+* 
 
 # Tempo de trabalho gasto
 - 60% Planejamento. Aqui estou pensando como atacar a demanda, possibilidades, arquitetura, tecnologias. Nessa etapa vc me ve parado olhando para o nada 
@@ -36,11 +54,12 @@
 > Monitoramento:
 > -Schedule do ansible de consulta API?
 > -Monitorar disco/cpu/memoria do servidor? 
+> -LogicMonitor para live monitoring?
 > 
 > Documentar na wiki:
 > - Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
 >     Criar api /status/ pra servir como liveness probe para uma app de monitoramento?
->     Cr
+>
 > - Requisitos da automatizacao: Ansible (versao), Conectividade ao servidor web, Inventorio criado no ansible com o(s) servidor(es) web. Credencias criadas para esse inventorio.
 > - Como devera ser executado o playbook do ansible (variaveis necessarias etc). (Com AWX ou linha de comando).
-> -Considerando que todo o armazenamento dessa app esta em memoria e nao em um SGDB, os dados sao volateis e serao perdidos quando o servidor web eh reiniciado.
+> - Considerando que todo o armazenamento dessa app esta em memoria e nao em um SGDB, os dados sao volateis e serao perdidos quando o servidor web eh reiniciado.
