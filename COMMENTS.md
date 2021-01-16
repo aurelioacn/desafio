@@ -10,7 +10,7 @@
 - 10% Teste. Nessa parte do tempo estou testando tudo que foi feito e "azeitando" 
 - 10% Documentacao. Tudo funcionando e testado faço com que tudo seja documentado de uma forma que ate meu filho entenda.
 
-# Extra: Meu bloco de notas pessoal onde ponho em ordem tudo que eh pra ser feito e algumas reflexoes.
+# Extra: Meu bloco de notas pessoal onde ponho em ordem tudo que eh pra ser feito e algumas reflexoes (aqui nao faz parte da documentacao, aqui sera output para documentacao).
 > Tasks de deploy:
 >	1. Variaveis a serem passadas pro ansible: 
 >		hostname de qual servidor web sera instalada a app, 
