@@ -1,3 +1,15 @@
+# Ideias que gostaria de implementar
+* A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
+  Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
+  seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml.
+
+# Tempo de trabalho gasto
+- 60% Planejamento. Aqui estou pensando como atacar a demanda, possibilidades, arquitetura, tecnologias. Nessa etapa vc me ve parado olhando para o nada 
+       mas com a cabeça a mil :D
+- 20% Açao. Aqui eu ja estou demonstrando sinal de vida, estou criando as instruçoes para as ferramentas me baseando no que foi planejado.
+- 10% Teste. Nessa parte do tempo estou testando tudo que foi feito e "azeitando" 
+- 10% Documentacao. Tudo funcionando e testado faço com que tudo seja documentado de uma forma que ate meu filho entenda.
+
 # Extra: Meu bloco de notas pessoal onde ponho em ordem tudo que eh pra ser feito e algumas reflexoes.
 > Tasks de deploy:
 >	1. Variaveis a serem passadas pro ansible: 
@@ -29,6 +41,6 @@
 > - Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
 >     Criar api /status/ pra servir como liveness probe para uma app de monitoramento?
 >     Cr
-> - Requisitos da automatizacao: Ansible (versao), Conectividade ao servidor web, Inventorio criado no ansible com o(s) servidor(es) web.
+> - Requisitos da automatizacao: Ansible (versao), Conectividade ao servidor web, Inventorio criado no ansible com o(s) servidor(es) web. Credencias criadas para esse inventorio.
 > - Como devera ser executado o playbook do ansible (variaveis necessarias etc). (Com AWX ou linha de comando).
 > -Considerando que todo o armazenamento dessa app esta em memoria e nao em um SGDB, os dados sao volateis e serao perdidos quando o servidor web eh reiniciado.
