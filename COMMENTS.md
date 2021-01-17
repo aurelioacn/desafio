@@ -1,8 +1,18 @@
 # Tags / Branches
-* desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito que a api com gunicorn e todos os requirements.txt. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
+* desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito da api com gunicorn e todos os requirements.txt funcionam com docker. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
 
 # Documentaçao: Como fazer deploy 
 * TODO
+
+# Como criar imagem da api/comentarios com docker e inicia-la manualmente
+Usar arquivos da tag desafio_aurelio_basic_docker_image_stable
+|Passo | Acao |
+| -------------| ------------- |
+| 1 | Copiar Dockerfile, gunicorn_start.sh e app/* para qualquer diretorio no host que contem docker instalado.|
+| 2 | cd /diretorio_acima|
+| 3 | sudo docker build -t api/comentarios .|
+| 4 | sudo docker run -d -p 8000:8000 --name api_comentarios_1 api/comentarios|
+| 5 | app ja esta subida no host e LISTEN na porta 8000|
 
 # Requisitos/Consideracoes
 * Ansible version 2.9.7 ou superior.
