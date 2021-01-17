@@ -23,12 +23,12 @@ Usar arquivos da tag desafio_aurelio_basic_docker_image_stable
 | 3 | sudo ansible-playbook --extra-vars "host_to_deploy=localhost app=api_comentarios version=1.0" deploy_docker_image.yml|
 
 
-
 # Requisitos/Consideracoes
 * Ansible version 2.9.7 ou superior.
 * Ansible esta propriamente configurado e com o inventorio e suas credenciais criados.
 * O host do Ansible tem acesso a este repositorio git assim como as credenciais para acessa-lo criadas.
 * O host onde a app sera instalada tem o servico docker instalado.
+* O todos os diretorios e scripts sao criados com chmod +744
 
 A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria de mais informacoes.
 
