@@ -29,8 +29,9 @@
              dest: '{{app_root}}'
              mode: '0744'
 
-            #- name: Stop application if it was already deployed before (previous version)
-            #TODO
+          - name: Stop application if it was already deployed before (previous version)
+            shell: docker stop '{{app}}'    
+
             #- name: Build and run docker image with app inside it
             #TODO
             #- name: Test app is LISTENING at defined port
