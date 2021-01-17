@@ -83,3 +83,6 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 - Docker: https://docs.docker.com/engine/
 - Ansible modulos: https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
 
+# Meu ambiente de trabalho
+- WSL2 Ubuntu 18.04
+- PyCharm 2020.2.3
