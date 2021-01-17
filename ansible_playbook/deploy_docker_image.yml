@@ -30,7 +30,9 @@
              mode: '0744'
 
           - name: Stop application if it was already deployed before (previous version)
-            shell: docker stop '{{app}}'    
+            shell: docker stop '{{app}}'
+            ignore_errors: yes    
+            
 
             #- name: Build and run docker image with app inside it
             #TODO
