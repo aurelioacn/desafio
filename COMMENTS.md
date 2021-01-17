@@ -65,7 +65,7 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 > - Considerando que todo o armazenamento dessa app esta em memoria e nao em um SGDB, os dados sao volateis e serao perdidos quando o servidor web eh reiniciado.
 
 # Referencias
-Instalar docker no ubuntu 18.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
-Docker: https://docs.docker.com/engine/
-ANsible modulos: https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+- Instalar docker no ubuntu 18.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+- Docker: https://docs.docker.com/engine/
+- Ansible modulos: https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
 
