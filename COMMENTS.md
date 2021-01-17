@@ -34,10 +34,10 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
   seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml. Muito mais facil para leitura e reuso.
 * Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
    - Criar api /status/ pra servir como liveness probe para uma app de monitoramento? A response seria por exemplo o total de comentarios feitos, um response OK etc.
+* Um CI/CD para automatizar a build e publicacao das imagens em um repositorio interno da empresa.
 
 # Tempo de trabalho gasto
-- 60% Planejamento. Aqui estou pensando como atacar a demanda, possibilidades, arquitetura, tecnologias. Nessa etapa vc me ve parado olhando para o nada 
-       mas com a cabeça a mil :D
+- 60% Planejamento. Aqui estou pensando como atacar a demanda, possibilidades, arquitetura, tecnologias e algumas provas de conceito. Nessa etapa vc me ve parado olhando para o nada.
 - 20% Açao. Aqui eu ja estou demonstrando sinal de vida, estou criando as instruçoes para as ferramentas me baseando no que foi planejado.
 - 10% Teste. Nessa parte do tempo estou testando tudo que foi feito e "azeitando" 
 - 10% Documentacao. Tudo funcionando e testado faço com que tudo seja documentado de uma forma que ate meu filho entenda.
