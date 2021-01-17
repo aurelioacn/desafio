@@ -1,5 +1,6 @@
 # Tags / Branches
-desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito que a api com gunicorn e todos os requirements.txt. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
+* desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito que a api com gunicorn e todos os requirements.txt. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
+
 # Documentaçao: Como fazer deploy 
 * TODO
 
