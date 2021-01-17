@@ -3,16 +3,20 @@
 
 
 
-  tasks:
-          - name: Create app directories inside host
-            TODO
-          - name: Copy git files into host directory above
-            TODO
-          - name: Stop application if it was already deployed before (previous version)
-            TODO
-          - name: Build and run docker image with app inside it
-            TODO
-          - name: Test app is LISTENING at defined port
-            TODO
-          - name: CFM: publish the version deployed, host, date and time.
-            TODO
+  tasks:        
+          - name: Create app directory if does not exist
+            file:
+             path: '/opt/globo/{{app}}/{{version}}/'
+             state: directory
+             mode: 0744
+          
+            #- name: Copy git files into host directory above
+            #TODO
+            #- name: Stop application if it was already deployed before (previous version)
+            #TODO
+            #- name: Build and run docker image with app inside it
+            #TODO
+            #- name: Test app is LISTENING at defined port
+            #TODO
+            #- name: CFM - publish the version deployed, host, date and time.
+            #TODO
