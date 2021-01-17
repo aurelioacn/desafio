@@ -1,3 +1,2 @@
-gunicorn_start.sh
 #!/bin/sh
-gunicorn --log-level debug api:app
+gunicorn --chdir app api:app -b 0.0.0.0:8000 --log-level debug
