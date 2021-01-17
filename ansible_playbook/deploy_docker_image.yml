@@ -1,17 +1,34 @@
 ---
 - hosts: '{{host_to_deploy}}'
-
+  vars:
+          - app_root: '/opt/globo/{{app}}/{{version}}/'
 
 
   tasks:        
-          - name: Create app directory if does not exist
+          - name: Create app directory if it does not exist
             file:
-             path: '/opt/globo/{{app}}/{{version}}/'
+             path: '{{app_root}}'
              state: directory
              mode: 0744
           
-            #- name: Copy git files into host directory above
-            #TODO
+          - name: Copy app files into host/app_root 
+            copy: 
+             src: ../app
+             dest: '{{app_root}}'
+             mode: '0744'
+
+          - name: Copy docker image files into host/app_root
+            copy:
+             src: ../docker_image/Dockerfile
+             dest: '{{app_root}}'
+             mode: '0744'
+
+          - name: Copy docker image files into host/app_root
+            copy:
+             src: ../docker_image/gunicorn_start.sh
+             dest: '{{app_root}}'
+             mode: '0744'
+
             #- name: Stop application if it was already deployed before (previous version)
             #TODO
             #- name: Build and run docker image with app inside it
