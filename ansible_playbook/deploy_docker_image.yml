@@ -2,6 +2,7 @@
 - hosts: '{{host_to_deploy}}'
   vars:
           - app_root: '/opt/globo/{{app}}/{{version}}/'
+          - web_port: 8000
 
 
   tasks:        
@@ -30,8 +31,14 @@
              mode: '0744'
 
           - name: Stop application if it was already deployed before (previous version)
-            shell: docker stop '{{app}}'
+            shell: docker rm -f '{{app}}'
             ignore_errors: yes    
+
+          - name: Build and run docker image of app
+            shell: |
+                   cd '{{app_root}}'
+                   docker build -t '{{app}}-{{version}}' .
+                   docker run -d -p {{web_port}}:8000 --name '{{app}}' '{{app}}-{{version}}'
             
 
             #- name: Build and run docker image with app inside it
