@@ -4,7 +4,8 @@
 # Requisitos/Consideracoes
 * Ansible version 2.9.7 ou superior.
 * Ansible esta propriamente configurado e com o inventorio e suas credenciais criados.
-* O host do Ansible tem acesso a este repositorio git.
+* O host do Ansible tem acesso a este repositorio git assim como as credenciais para acessa-lo criadas.
+* O host onde a app sera instalada tem o servico docker instalado.
 
 A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria de mais informacoes.
 
@@ -14,12 +15,12 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 * Se essa API for consumida por uma outra app em outro servidor ou ate mesmo um reverse-proxy, nao tem nenhum tipo de bloqueio de FW ate a porta 8000 no(s) servidore(s) que sera feito o deploy.
 
 # Ideias que gostaria de implementar
+* A instalacao do servico docker no host pode ser automatizada tambem com o deploy da app porem por boa pratica um servico de host deve ser criado a nivel de imagem desse host e nao como uma dependencia de app. Isso eu me baseio na minha experiencia porem estou aberto a discussao sobre esse tema.
 * A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
-  Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS seria com docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
-  seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml.
+  Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS temos o docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
+  seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml. Muito mais facil para leitura e reuso.
 * Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
-   - Criar api /status/ pra servir como liveness probe para uma app de monitoramento? A response seria por exemplo o total de comentarios feitos etc.
-* 
+   - Criar api /status/ pra servir como liveness probe para uma app de monitoramento? A response seria por exemplo o total de comentarios feitos, um response OK etc.
 
 # Tempo de trabalho gasto
 - 60% Planejamento. Aqui estou pensando como atacar a demanda, possibilidades, arquitetura, tecnologias. Nessa etapa vc me ve parado olhando para o nada 
