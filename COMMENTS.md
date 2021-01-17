@@ -14,6 +14,16 @@ Usar arquivos da tag desafio_aurelio_basic_docker_image_stable
 | 4 | sudo docker run -d -p 8000:8000 --name api_comentarios_1 api/comentarios|
 | 5 | app ja esta subida no host e LISTEN na porta 8000|
 
+# Como executar o playbook localmente por linha de comando
+
+|Passo | Acao |
+| -------------| ------------- |
+| 1 | Copiar deploy_docker_image.yml para o host onde ansible esta installado e o playbook sera executado. |
+| 2 | cd /diretorio_acima onde deploy_docker_image.yml esta|
+| 3 | sudo ansible-playbook --extra-vars "host_to_deploy=localhost app=api_comentarios version=1.0" deploy_docker_image.yml|
+
+
+
 # Requisitos/Consideracoes
 * Ansible version 2.9.7 ou superior.
 * Ansible esta propriamente configurado e com o inventorio e suas credenciais criados.
