@@ -42,10 +42,11 @@
                    docker build -t '{{app}}-{{version}}' .
                    docker run -d -p {{web_port}}:8000 --name '{{app}}' '{{app}}-{{version}}'
             
+          - name: Test app is LISTENING at defined port
+            wait_for: 
+             port: '{{web_port}}'
+             state: started
+             timeout: 20
 
-            #- name: Build and run docker image with app inside it
-            #TODO
-            #- name: Test app is LISTENING at defined port
-            #TODO
             #- name: CFM - publish the version deployed, host, date and time.
             #TODO
