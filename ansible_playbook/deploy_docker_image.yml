@@ -31,6 +31,8 @@
              mode: '0744'
 
           - name: Stop application if it was already deployed before (previous version)
+            #Here is not the best pratice to stop a container like that. A good idea for the future is use ansible Docker module.
+            #However in my environment this module wont work due to the version of my python libraries.
             shell: docker rm -f '{{app}}'
             ignore_errors: yes    
 
