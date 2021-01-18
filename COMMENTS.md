@@ -35,7 +35,7 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 # Ideias que gostaria de implementar
 * Um CI/CD pra orchestrar todo o pipeline: image build, push pra um repositorio:
 |Construir imagem do docker e publicar no repositorio| -> |Deploy ambiente de teste| -> |Executar testes de api, acceptance, integracao| -> |Tudo ok?| -> |Deploy em Produçao| -> |Executar testes de api, acceptance|
-
+* No final de todo o o processo atualizar o que foi feito deploy, onde, resultado dos testes etc em um servidor web para usuarios consultarem.
 * A instalacao do servico docker no host pode ser automatizada tambem com o deploy da app porem por boa pratica um servico de host deve ser criado a nivel de imagem desse host e nao como uma dependencia de app. Isso eu me baseio na minha experiencia porem estou aberto a discussao sobre esse tema.
 * A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
   Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS temos o docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
