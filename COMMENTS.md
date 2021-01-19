@@ -2,14 +2,14 @@
 * desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito da api com gunicorn e todos os requirements.txt funcionam com docker. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
 
 # Documentaçao: Como fazer deploy 
-* Todo o processo automatizado consiste em: Executar comando no ansible para fazer deploy em um servidor especifico. Ansible conecta nesse servidor, cria a estrutura de ficheiros, gera uma imagem docker, para a app caso ja tenha sido instalada anteriormente (versao anterior), instala imagem que contem a api do desafio, testa a app em execucao.
+* Todo o processo automatizado consiste em: Executar comando no ansible para fazer deploy em um servidor especifico (dev/tests). Ansible conecta nesse servidor, cria a estrutura de ficheiros, gera uma imagem docker, para a app caso ja tenha sido instalada anteriormente (versao anterior), instala imagem que contem a api do desafio, testa a app em execucao. Todo teste ok, ansible cria uma tag e faz um push para o repositorio docker.hub com a versao que foi solicitada pelo operador.
 
 Como executar o playbook por linha de comando:
 |Passo | Acao |
 | -------------| ------------- |
-| 1 | Copiar deploy_docker_image.yml para o host onde ansible esta installado e o playbook sera executado. |
-| 2 | cd /diretorio_acima onde deploy_docker_image.yml esta|
-| 3 | sudo ansible-playbook --extra-vars "host_to_deploy=localhost app=comentarios version=1.0 web_port=8000" deploy_docker_image.yml|
+| 1 | Copiar test_app_and_generate_atifact.yml para o host onde ansible esta installado e o playbook sera executado. |
+| 2 | cd /diretorio_acima onde test_app_and_generate_atifact.yml esta|
+| 3 | sudo ansible-playbook --extra-vars "host_to_deploy=localhost app=comentarios version=1.0 web_port=8000" test_app_and_generate_atifact.yml|
 
 |Parametro|Comentario|
 |---|---|
@@ -24,6 +24,7 @@ Como executar o playbook por linha de comando:
 * O host do Ansible tem acesso a este repositorio git assim como as credenciais para acessa-lo criadas.
 * O host onde a app sera instalada tem o servico docker instalado.
 * O todos os diretorios e scripts sao criados com chmod +744
+* O host onde sera feito o deploy tem acesso ao docker.hub repositorio.
 
 A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria de mais informacoes.
 
@@ -33,11 +34,11 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 * Se essa API for consumida por uma outra app em outro servidor ou ate mesmo um reverse-proxy, nao tem nenhum tipo de bloqueio de FW ate a porta 8000 no(s) servidore(s) que sera feito o deploy.
 
 # Ideias que gostaria de implementar
-* Um CI/CD pra orchestrar todo o pipeline: image build, push pra um repositorio:
-|Construir imagem do docker e publicar no repositorio| -> |Deploy ambiente de teste| -> |Executar testes de api, acceptance, integracao| -> |Tudo ok?| -> |Deploy em Produçao| -> |Executar testes de api, acceptance|
+* Um CI/CD pra orchestrar todo o pipeline:
+|Deploy ambiente de teste| -> |Executar testes de api, acceptance, integracao| -> |Construir imagem do docker e publicar no repositorio| -> |Tudo ok?| -> |Deploy em Produçao| -> |Executar testes de api, acceptance em producao| -> delivered
 * No final de todo o o processo atualizar o que foi feito deploy, onde, resultado dos testes etc em um servidor web para usuarios consultarem.
 * A instalacao do servico docker no host pode ser automatizada tambem com o deploy da app porem por boa pratica um servico de host deve ser criado a nivel de imagem desse host e nao como uma dependencia de app. Isso eu me baseio na minha experiencia porem estou aberto a discussao sobre esse tema.
-* A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
+* A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes, testes e push para um repositorio publico.
   Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS temos o docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
   seria com ansible porem ja utilizaria o modulo "template" com jinja2 para fazer um parse de todo o yml. Muito mais facil para leitura e reuso.
 * Observacoes sobre o codigo/sugestoes para reportar para o desenvolvedor/PO: 
@@ -89,6 +90,7 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 - Instalar docker no ubuntu 18.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 - Docker: https://docs.docker.com/engine/
 - Ansible modulos: https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+- Dockerhub: https://hub.docker.com/repository/docker/aurelioneto/comentarios
 
 # Meu ambiente de trabalho
 - WSL2 Ubuntu 18.04
