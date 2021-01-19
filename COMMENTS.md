@@ -1,5 +1,6 @@
 # Tags / Branches
 * desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito da api com gunicorn e todos os requirements.txt funcionam com docker. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
+*desafio_aurelio: baseline uptodate do projeto.
 
 # Documentaçao: Como fazer deploy 
 * Todo o processo automatizado consiste em: Executar comando no ansible para fazer deploy em um servidor especifico (dev/tests). Ansible conecta nesse servidor, cria a estrutura de ficheiros, gera uma imagem docker, para a app caso ja tenha sido instalada anteriormente (versao anterior), instala imagem que contem a api do desafio, testa a app em execucao. Todo teste ok, ansible cria uma tag e faz um push para o repositorio docker.hub com a versao que foi solicitada pelo operador.
