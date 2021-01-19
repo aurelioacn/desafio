@@ -2,20 +2,9 @@
 * desafio_aurelio_basic_docker_image_stable -> Tag com a versao basica da prova de conceito da api com gunicorn e todos os requirements.txt funcionam com docker. Aqui nao tem automatizacao de ansible ainda. Aqui crio o microservico com docker da forma mais basica. A implementacao com ansible e toda automatizacao entrara logo mais.
 
 # Documentaçao: Como fazer deploy 
-* TODO
+* Todo o processo automatizado consiste em: Executar comando no ansible para fazer deploy em um servidor especifico. Ansible conecta nesse servidor, cria a estrutura de ficheiros, gera uma imagem docker, para a app caso ja tenha sido instalada anteriormente (versao anterior), instala imagem que contem a api do desafio, testa a app em execucao.
 
-# Como criar imagem da api/comentarios com docker e inicia-la manualmente
-Usar arquivos da tag desafio_aurelio_basic_docker_image_stable
-|Passo | Acao |
-| -------------| ------------- |
-| 1 | Copiar Dockerfile, gunicorn_start.sh e app/* para qualquer diretorio no host que contem docker instalado.|
-| 2 | cd /diretorio_acima|
-| 3 | sudo docker build -t api/comentarios .|
-| 4 | sudo docker run -d -p 8000:8000 --name api_comentarios_1 api/comentarios|
-| 5 | app ja esta subida no host e LISTEN na porta 8000|
-
-# Como executar o playbook por linha de comando
-
+Como executar o playbook por linha de comando:
 |Passo | Acao |
 | -------------| ------------- |
 | 1 | Copiar deploy_docker_image.yml para o host onde ansible esta installado e o playbook sera executado. |
@@ -44,7 +33,9 @@ A maioria abaixo seria possivel fazer nessa demanda como IaC porem eu precisaria
 * Se essa API for consumida por uma outra app em outro servidor ou ate mesmo um reverse-proxy, nao tem nenhum tipo de bloqueio de FW ate a porta 8000 no(s) servidore(s) que sera feito o deploy.
 
 # Ideias que gostaria de implementar
-* Um CI/CD pra orchestrar image build, push pra um repositorio e deploy com o ansible.
+* Um CI/CD pra orchestrar todo o pipeline: image build, push pra um repositorio:
+|Construir imagem do docker e publicar no repositorio| -> |Deploy ambiente de teste| -> |Executar testes de api, acceptance, integracao| -> |Tudo ok?| -> |Deploy em Produçao| -> |Executar testes de api, acceptance|
+* No final de todo o o processo atualizar o que foi feito deploy, onde, resultado dos testes etc em um servidor web para usuarios consultarem.
 * A instalacao do servico docker no host pode ser automatizada tambem com o deploy da app porem por boa pratica um servico de host deve ser criado a nivel de imagem desse host e nao como uma dependencia de app. Isso eu me baseio na minha experiencia porem estou aberto a discussao sobre esse tema.
 * A solucao para a demanda eu implementei com ansible diretamente num servidor web (IaaS) com suas validacoes e testes.
   Numa estrutura PaaS com kubernetes seria um pouco mais alto nivel ja que poderiamos usar uma imagem para esse microservico (em IaaS temos o docker) e ja teria todas as dependencias versionadas no seu mini mundo. O deploy tambem
