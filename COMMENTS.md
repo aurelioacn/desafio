@@ -8,8 +8,8 @@
 Como executar o playbook por linha de comando:
 |Passo | Acao |
 | -------------| ------------- |
-| 1 | Copiar test_app_and_generate_atifact.yml para o host onde ansible esta installado e o playbook sera executado. |
-| 2 | cd /diretorio_acima onde test_app_and_generate_atifact.yml esta|
+| 1 | Baixar https://github.com/aurelioacn/desafio.git branch desafio_aurelio no host que o ansible esta instalado|
+| 2 | cd desafio/ansible_playbook|
 | 3 | sudo ansible-playbook --extra-vars "host_to_deploy=localhost app=comentarios version=1.0 web_port=8000" test_app_and_generate_atifact.yml|
 
 |Parametro|Comentario|
